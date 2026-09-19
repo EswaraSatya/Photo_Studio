@@ -202,6 +202,78 @@ User asked for the best color combination and a better-fitting page backdrop.
   content. Gallery/About/Location/Showcase photos are left as-is (explicitly agreed placeholders
   pending real studio photos, per earlier decision).
 
+## Design Upgrade (v8 — full silhouette redesign: geometric direction)
+User asked for a complete restyle with "new silhouette and texture." Chose direction: Modern
+geometric (diagonal dividers, glassmorphism, layered depth) + Asymmetric/broken-grid layout.
+
+- **`.section-slant` utility**: gives Services, Gallery, Location, and Contact a diagonal
+  top/bottom edge via `clip-path` + negative margin, so section boundaries read as continuous
+  angled seams down the page instead of flat horizontal lines (Gallery/Contact restructured to a
+  full-width outer `<section>` + inner `max-w-6xl` wrapper so the slant spans the full viewport).
+- **Hero & About restyled asymmetric**: Hero is now a left-aligned two-column split (text +
+  rotated geometric frame with grid texture) instead of centered; About uses an offset
+  `0.85fr/1.15fr` grid with a rotated, notched-corner image and a text column pushed down
+  (`lg:mt-16`) for a broken-grid feel instead of a straight centered split.
+- **New shape utilities**: `.notched-corners` (chamfered "cut paper" corners, used on the About
+  photo), `.hex-frame` (hexagon clip-path, used on About's accent shape), `.arch-frame` (elliptical
+  arch top, used on the Location storefront photo), `.diamond-badge` (used on Services/Contact
+  icon badges, already existed, kept consistent).
+- **`ViewfinderFrame.tsx`** (new, mounted once in `App.tsx`): fixed camera-viewfinder corner
+  brackets over the whole page — a subtle, permanent photography motif.
+- **Floating navbar**: per explicit follow-up request, the navbar no longer spans full
+  edge-to-edge width — it's now an inset, rounded floating bar (`max-w-5xl`, margin on all sides)
+  so it visibly doesn't touch the left/right edges of the viewport.
+- **Color additions**: new `--accent-cool` variable per theme (teal-ish tone) used for secondary
+  hover states (Hero's "Get In Touch" button, Contact's social icons) to break up single-accent
+  monotony. New `.shadow-accent`/`.shadow-accent-sm` utilities replace flat black shadows with
+  shadows tinted from `var(--accent)`, applied across About/Services/Gallery/Location/Contact.
+  The film-grain overlay (`body::after`) is now tinted with `color-mix(var(--accent), var(--text))`
+  instead of plain `var(--text)`, so the texture itself carries each theme's color.
+- **Showcase image bug fixed**: the ScrollExpand reveal previously used a random picsum photo
+  (a hiker in the mountains) with no relation to the site. Replaced with a JS-generated SVG
+  data-URI radial-gradient built from `src/data/themeColors.ts` (a small hex map mirroring
+  `index.css`), so the showcase reveal always matches the active theme exactly and updates live
+  when the user switches themes — same fix pattern already used for the Hero backdrop.
+- Verified on a fresh browser tab: floating navbar with visible side gaps, diagonal seams between
+  Services/Gallery/Location/Contact, notched/hex/arch shapes rendering, viewfinder corner
+  brackets, and the theme-accurate Showcase gradient all confirmed working; `npm run build` passes
+  clean.
+
+## Design Upgrade (v9 — new theme palette + footer/marquee polish)
+User felt the gold/pastel/maroon palettes "needed rethinking" and asked for a completely
+different direction; picked "Midnight & Champagne" from a set of proposed options.
+
+- **Themes replaced entirely**: `gold`/`pastel`/`maroon` → `midnight`/`ivory`/`wine`, all three
+  unified by the same signature champagne-gold accent (`#d9b978`/`#c9a35f`) for a cohesive
+  jewel-tone identity, varying only the base mood (deep navy / warm ivory / deep wine):
+  - `midnight` (default): near-black navy `--bg`, champagne gold accent, soft periwinkle
+    `--accent-cool`.
+  - `ivory`: warm ivory `--bg`, deep navy `--text`, darker champagne gold (for contrast on a
+    light background), dusty-blue `--accent-cool`.
+  - `wine`: deep wine-black `--bg`, same champagne gold accent, muted teal-blue `--accent-cool`.
+  - Updated everywhere the old theme names appeared: `useTheme.ts` (`ThemeName` union + default),
+    `index.css` (`[data-theme=...]` blocks), `ThemeSwitcher.tsx` (labels), `themeColors.ts` (used
+    by Showcase's generated gradient).
+  - `ThemeSwitcher` swatches changed from a single solid color to a two-tone diagonal
+    bg/accent-gold gradient swatch, since the two dark themes (midnight/wine) were too similar as
+    flat circles to tell apart at a glance.
+- **New Marquee section** (`Marquee.tsx`): an infinite horizontal scrolling ticker of the 6
+  service names separated by a diamond glyph, placed between Showcase and About. Pure CSS
+  `@keyframes marquee` animation (respects `prefers-reduced-motion`), reuses existing service data
+  rather than introducing new content.
+- **Footer redesign — sleek single row**: replaced the tall stacked footer (monogram → double
+  divider → tagline → divider → copyright → credit, ~5 lines) with one compact row (monogram+name
+  left, quick nav links center, social icons right) plus a single slim copyright/credit line
+  underneath; re-added `.section-backdrop` ambient glow (no height cost) so it isn't visually flat.
+- **Cleanup**: removed a mismatched `gradient-border` class from the About photo (a rectangular
+  gradient-mask border doesn't combine correctly with the `.notched-corners` clip-path shape), and
+  added a small hex-shaped accent decoration to Gallery so every major section now shares the same
+  geometric silhouette language.
+- Verified all three new themes render correctly and distinctly (including the Showcase's
+  theme-accurate gradient and the ThemeSwitcher's two-tone swatches); `npm run build` passes clean.
+
+
+
 
 
 

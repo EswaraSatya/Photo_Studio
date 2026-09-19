@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FaBars, FaCamera, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
 import ThemeSwitcher from "./ThemeSwitcher";
 import type { ThemeName } from "../hooks/useTheme";
 
@@ -29,15 +29,17 @@ export default function Navbar({ theme, setTheme }: NavbarProps) {
   }, []);
 
   return (
-    <header
-      className={`glass sticky top-0 z-40 border-b transition-shadow ${
-        scrolled ? "border-[var(--border)] shadow-lg shadow-black/10" : "border-transparent"
-      }`}
-    >
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
-        <a href="#home" className="flex items-center gap-2 whitespace-nowrap text-lg font-semibold tracking-[0.2em] text-[var(--accent)]">
-          <FaCamera className="text-base" />
-          YVVR STUDIO
+    <header className="sticky top-0 z-40 px-3 pt-3 sm:px-6 sm:pt-4">
+      <div
+        className={`glass mx-auto flex max-w-5xl items-center justify-between rounded-2xl border px-4 py-3 transition-shadow ${
+          scrolled ? "border-[var(--border)] shadow-lg shadow-black/20" : "border-[var(--border)]/60"
+        }`}
+      >
+        <a href="#home" className="flex items-center gap-3 whitespace-nowrap">
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[var(--accent)] font-serif text-sm text-[var(--accent)]">
+            YV
+          </span>
+          <span className="font-serif text-lg tracking-[0.25em] text-[var(--accent)]">YVVR STUDIO</span>
         </a>
 
         <nav className="hidden items-center gap-7 md:flex">
@@ -67,7 +69,7 @@ export default function Navbar({ theme, setTheme }: NavbarProps) {
       </div>
 
       {open && (
-        <nav className="glass flex flex-col gap-1 border-t border-[var(--border)] px-4 pb-4 md:hidden">
+        <nav className="glass mx-auto mt-2 flex max-w-5xl flex-col gap-1 rounded-2xl border border-[var(--border)] px-4 py-3 md:hidden">
           {links.map((link) => (
             <a
               key={link.href}

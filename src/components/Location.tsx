@@ -11,7 +11,7 @@ export default function Location() {
   const [view, setView] = useState<MapView>("google");
 
   return (
-    <section id="location" className="section-backdrop bg-[var(--surface)] px-4 py-24 sm:px-6">
+    <section id="location" className="section-backdrop section-slant bg-[var(--surface)] px-4 pb-24 pt-32 sm:px-6">
       <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-2 lg:items-center">
         <motion.div
           initial={{ opacity: 0, x: -24 }}
@@ -26,8 +26,8 @@ export default function Location() {
           >
             Our Studio
           </h2>
-          <div className="mt-5 flex items-start gap-3 rounded-2xl border border-[var(--border)] bg-[var(--surface-alt)] p-4">
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-[var(--accent)] to-[var(--accent-2)]">
+          <div className="glass-card mt-5 flex items-start gap-3 rounded-2xl p-4">
+            <span className="diamond-badge flex h-10 w-10 shrink-0 items-center justify-center bg-gradient-to-br from-[var(--accent)] to-[var(--accent-2)]">
               <FaMapMarkerAlt className="text-[var(--on-accent)]" />
             </span>
             <p className="text-[var(--text-muted)]">
@@ -42,7 +42,7 @@ export default function Location() {
           >
             Get Directions
           </a>
-          <div className="gradient-border mt-6 overflow-hidden rounded-2xl border border-[var(--border)] shadow-xl shadow-black/20">
+          <div className="gradient-border arch-frame shadow-accent mt-6 overflow-hidden">
             <img
               src="https://picsum.photos/seed/yvvr-studio-front/700/450"
               alt="YVVR Studio storefront"
@@ -58,7 +58,7 @@ export default function Location() {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7 }}
         >
-          <div className="mb-3 inline-flex flex-wrap gap-1 rounded-full border border-[var(--border)] bg-[var(--surface-alt)] p-1">
+          <div className="glass-card mb-3 inline-flex flex-wrap gap-1 rounded-full p-1">
             <button
               type="button"
               onClick={() => setView("google")}
@@ -97,7 +97,7 @@ export default function Location() {
             </button>
           </div>
 
-          <div className="h-80 w-full overflow-hidden rounded-2xl border border-[var(--border)] shadow-xl shadow-black/20 lg:h-[27rem]">
+          <div className="shadow-accent h-80 w-full overflow-hidden rounded-2xl border border-[var(--border)] lg:h-[27rem]">
             {view === "google" && (
               <iframe
                 title="YVVR Studio location map"

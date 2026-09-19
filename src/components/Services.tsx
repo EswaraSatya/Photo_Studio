@@ -3,7 +3,7 @@ import { services } from "../data/services";
 
 export default function Services() {
   return (
-    <section id="services" className="section-backdrop bg-[var(--surface)] px-4 py-24 sm:px-6">
+    <section id="services" className="section-backdrop section-slant bg-[var(--surface)] px-4 pb-28 pt-32 sm:px-6">
       <div className="mx-auto max-w-6xl">
         <div className="text-center">
           <p className="eyebrow justify-center text-xs uppercase tracking-[0.35em] text-[var(--accent)]">
@@ -27,12 +27,14 @@ export default function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.5, delay: index * 0.08 }}
-                className="gradient-border relative overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface-alt)] p-6 text-center shadow-lg shadow-black/10 transition hover:-translate-y-1.5"
+                className={`glass-card gradient-border shadow-accent-sm relative overflow-hidden rounded-2xl p-6 text-center transition hover:-translate-y-1.5 ${
+                  index % 3 === 1 ? "lg:translate-y-6" : ""
+                }`}
               >
                 <span className="absolute right-4 top-3 font-serif text-3xl text-[var(--border)]">
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[var(--accent)] to-[var(--accent-2)]">
+                <div className="diamond-badge mx-auto flex h-16 w-16 items-center justify-center bg-gradient-to-br from-[var(--accent)] to-[var(--accent-2)]">
                   <Icon className="text-2xl text-[var(--on-accent)]" />
                 </div>
                 <h3 className="mt-5 text-lg font-semibold text-[var(--text)]">{service.title}</h3>
@@ -47,4 +49,5 @@ export default function Services() {
     </section>
   );
 }
+
 

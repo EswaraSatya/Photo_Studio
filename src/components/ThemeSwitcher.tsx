@@ -5,15 +5,22 @@ interface ThemeSwitcherProps {
   setTheme: (theme: ThemeName) => void;
 }
 
-const options: { value: ThemeName; label: string; swatch: string }[] = [
-  { value: "gold", label: "Black & Gold", swatch: "#d4af37" },
-  { value: "pastel", label: "Soft Pastel", swatch: "#c98b8b" },
-  { value: "maroon", label: "Maroon & Gold", swatch: "#c9a24b" },
+const options: { value: ThemeName; label: string; bg: string; accent: string }[] = [
+  { value: "midnight", label: "Midnight & Champagne", bg: "#0a0e1a", accent: "#d9b978" },
+  { value: "ivory", label: "Ivory & Champagne", bg: "#f9f4ea", accent: "#c9a35f" },
+  { value: "wine", label: "Wine & Champagne", bg: "#1c0f18", accent: "#d9b978" },
 ];
 
 export default function ThemeSwitcher({ theme, setTheme }: ThemeSwitcherProps) {
   return (
-    <div className="flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[var(--surface)]/80 p-1 backdrop-blur">
+    <div
+      className="flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[var(--surface)]/80 p-1 backdrop-blur"
+      role="group"
+      aria-label="Choose color theme"
+    >
+      <span className="hidden pl-2 text-[0.65rem] uppercase tracking-[0.2em] text-[var(--text-muted)] md:inline">
+        Theme
+      </span>
       {options.map((option) => (
         <button
           key={option.value}
@@ -22,12 +29,13 @@ export default function ThemeSwitcher({ theme, setTheme }: ThemeSwitcherProps) {
           aria-pressed={theme === option.value}
           onClick={() => setTheme(option.value)}
           className={`h-6 w-6 rounded-full border-2 transition ${
-            theme === option.value ? "border-[var(--accent)] scale-110" : "border-transparent opacity-70"
+            theme === option.value ? "border-[var(--accent)] scale-110" : "border-transparent opacity-70 hover:opacity-100"
           }`}
-          style={{ backgroundColor: option.swatch }}
+          style={{ background: `linear-gradient(135deg, ${option.bg} 50%, ${option.accent} 50%)` }}
           title={option.label}
         />
       ))}
     </div>
   );
 }
+

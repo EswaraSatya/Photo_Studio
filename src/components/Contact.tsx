@@ -3,12 +3,13 @@ import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaWhatsapp, FaInstagram, FaFace
 
 export default function Contact() {
   return (
-    <section id="contact" className="section-backdrop mx-auto max-w-4xl px-4 py-24 text-center sm:px-6">
+    <section id="contact" className="section-backdrop section-slant bg-[var(--bg)] px-4 pb-24 pt-32 text-center sm:px-6">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.7 }}
+        className="mx-auto max-w-4xl"
       >
         <p className="eyebrow justify-center text-xs uppercase tracking-[0.35em] text-[var(--accent)]">
           Get In Touch
@@ -22,25 +23,25 @@ export default function Contact() {
 
         <div className="mt-10 grid gap-6 sm:grid-cols-3">
           <a
-            href="tel:+910000000000"
-            className="gradient-border flex flex-col items-center gap-3 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 shadow-lg shadow-black/10 transition hover:-translate-y-1"
+            href="tel:+918498989306"
+            className="glass-card gradient-border shadow-accent-sm flex flex-col items-center gap-3 rounded-2xl p-6 transition hover:-translate-y-1"
           >
-            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[var(--accent)] to-[var(--accent-2)]">
+            <span className="diamond-badge flex h-12 w-12 items-center justify-center bg-gradient-to-br from-[var(--accent)] to-[var(--accent-2)]">
               <FaPhoneAlt className="text-lg text-[var(--on-accent)]" />
             </span>
-            <span className="text-sm text-[var(--text-muted)]">+91 00000 00000</span>
+            <span className="text-sm text-[var(--text-muted)]">+91 84989 89306</span>
           </a>
           <a
             href="mailto:hello@yvvrstudio.com"
-            className="gradient-border flex flex-col items-center gap-3 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 shadow-lg shadow-black/10 transition hover:-translate-y-1"
+            className="glass-card gradient-border shadow-accent-sm flex flex-col items-center gap-3 rounded-2xl p-6 transition hover:-translate-y-1 sm:-translate-y-4"
           >
-            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[var(--accent)] to-[var(--accent-2)]">
+            <span className="diamond-badge flex h-12 w-12 items-center justify-center bg-gradient-to-br from-[var(--accent)] to-[var(--accent-2)]">
               <FaEnvelope className="text-lg text-[var(--on-accent)]" />
             </span>
             <span className="text-sm text-[var(--text-muted)]">hello@yvvrstudio.com</span>
           </a>
-          <div className="flex flex-col items-center gap-3 rounded-2xl border border-[var(--border)] bg-[var(--surface)] p-6 shadow-lg shadow-black/10">
-            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[var(--accent)] to-[var(--accent-2)]">
+          <div className="glass-card shadow-accent-sm flex flex-col items-center gap-3 rounded-2xl p-6">
+            <span className="diamond-badge flex h-12 w-12 items-center justify-center bg-gradient-to-br from-[var(--accent)] to-[var(--accent-2)]">
               <FaMapMarkerAlt className="text-lg text-[var(--on-accent)]" />
             </span>
             <span className="text-sm text-[var(--text-muted)]">Kakinada, Andhra Pradesh</span>
@@ -48,13 +49,13 @@ export default function Contact() {
         </div>
 
         <div className="mt-8 flex justify-center gap-6 text-2xl text-[var(--text-muted)]">
-          <a href="https://wa.me/910000000000" aria-label="WhatsApp" className="transition hover:-translate-y-1 hover:text-[var(--accent)]">
+          <a href="https://wa.me/918498989306" aria-label="WhatsApp" className="transition hover:-translate-y-1 hover:text-[var(--accent-cool)]">
             <FaWhatsapp />
           </a>
-          <a href="https://instagram.com/" aria-label="Instagram" className="transition hover:-translate-y-1 hover:text-[var(--accent)]">
+          <a href="https://instagram.com/" aria-label="Instagram" className="transition hover:-translate-y-1 hover:text-[var(--accent-cool)]">
             <FaInstagram />
           </a>
-          <a href="https://facebook.com/" aria-label="Facebook" className="transition hover:-translate-y-1 hover:text-[var(--accent)]">
+          <a href="https://facebook.com/" aria-label="Facebook" className="transition hover:-translate-y-1 hover:text-[var(--accent-cool)]">
             <FaFacebook />
           </a>
         </div>

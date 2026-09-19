@@ -2,12 +2,14 @@ import CurtainIntro from "./components/CurtainIntro";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Showcase from "./components/Showcase";
+import Marquee from "./components/Marquee";
 import About from "./components/About";
 import Services from "./components/Services";
 import Gallery from "./components/Gallery";
 import Location from "./components/Location";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import ViewfinderFrame from "./components/ViewfinderFrame";
 import { useTheme } from "./hooks/useTheme";
 
 function App() {
@@ -16,10 +18,12 @@ function App() {
   return (
     <>
       <CurtainIntro />
+      <ViewfinderFrame />
       <Navbar theme={theme} setTheme={setTheme} />
       <main>
         <Hero />
-        <Showcase />
+        <Showcase theme={theme} />
+        <Marquee />
         <About />
         <Services />
         <Gallery />

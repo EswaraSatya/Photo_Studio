@@ -2,41 +2,45 @@
 
 @layer base {
   :root,
-  [data-theme="gold"] {
-    --bg: #0b0b0d;
-    --surface: #16151a;
-    --surface-alt: #1e1c22;
-    --text: #f5f1e8;
-    --text-muted: #b8b2a5;
-    --accent: #d4af37;
-    --accent-2: #f1d98b;
-    --border: #2c2a30;
-    --on-accent: #201907;
+  [data-theme="midnight"] {
+    --bg: #0a0e1a;
+    --surface: #131a2c;
+    --surface-alt: #1b2338;
+    --text: #f3f0e8;
+    --text-muted: #b7bdd0;
+    --accent: #d9b978;
+    --accent-2: #f0d9a8;
+    --accent-cool: #7ea3c9;
+    --border: #232b42;
+    --on-accent: #201703;
   }
 
-  [data-theme="pastel"] {
-    --bg: #fdf6f0;
+  [data-theme="ivory"] {
+    --bg: #f9f4ea;
     --surface: #ffffff;
-    --surface-alt: #f3e3da;
-    --text: #4a3b3b;
-    --text-muted: #8a7570;
-    --accent: #c98b8b;
-    --accent-2: #d4b483;
-    --border: #e6d6ca;
-    --on-accent: #2e1a17;
+    --surface-alt: #f0e6d2;
+    --text: #241f2e;
+    --text-muted: #6e6577;
+    --accent: #c9a35f;
+    --accent-2: #e0b98a;
+    --accent-cool: #7391ab;
+    --border: #e6dcc8;
+    --on-accent: #2a1c08;
   }
 
-  [data-theme="maroon"] {
-    --bg: #1a0a0d;
-    --surface: #260f14;
-    --surface-alt: #33141a;
-    --text: #f5e9e2;
-    --text-muted: #cbaaa2;
-    --accent: #c9a24b;
-    --accent-2: #e7c873;
-    --border: #3d1a21;
-    --on-accent: #241a06;
+  [data-theme="wine"] {
+    --bg: #1c0f18;
+    --surface: #271323;
+    --surface-alt: #33192c;
+    --text: #f3e7ee;
+    --text-muted: #cbaec0;
+    --accent: #d9b978;
+    --accent-2: #e8c9b0;
+    --accent-cool: #6f8f9e;
+    --border: #3d2334;
+    --on-accent: #201206;
   }
+
 
   html {
     scroll-behavior: smooth;
@@ -48,6 +52,19 @@
     color: var(--text);
     font-family: "Cormorant Garamond", Georgia, serif;
     transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  /* Buttery theme switching: fade every surface/border/text color instead of snapping */
+  body,
+  body * {
+    transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    body,
+    body * {
+      transition: none;
+    }
   }
 
   h1, h2, h3 {
@@ -160,6 +177,96 @@
     background-image:
       radial-gradient(circle at 10% -15%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 55%),
       radial-gradient(circle at 105% 115%, color-mix(in srgb, var(--accent-2) 14%, transparent), transparent 50%);
+  }
+
+  /* Geometric redesign: diagonal section silhouette + glass/texture surfaces */
+  .section-slant {
+    --slant: clamp(1.25rem, 3.5vw, 3.5rem);
+    position: relative;
+    clip-path: polygon(0 0, 100% var(--slant), 100% 100%, 0 calc(100% - var(--slant)));
+    margin-top: calc(-1 * var(--slant));
+  }
+
+  .glass-card {
+    background-color: color-mix(in srgb, var(--surface) 55%, transparent);
+    backdrop-filter: blur(12px);
+    border: 1px solid color-mix(in srgb, var(--border) 85%, transparent);
+  }
+
+  .diamond-badge {
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  }
+
+  .geo-shape {
+    position: absolute;
+    border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+    pointer-events: none;
+  }
+
+  .geo-grid {
+    background-image:
+      linear-gradient(color-mix(in srgb, var(--border) 60%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in srgb, var(--border) 60%, transparent) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 40%, transparent 85%);
+  }
+
+  /* Additional shape silhouettes for photo frames and accent badges */
+  .notched-corners {
+    clip-path: polygon(
+      22px 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%, 0 22px
+    );
+  }
+
+  .hex-frame {
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  }
+
+  .arch-frame {
+    border-radius: 50% 50% 0 0 / 26% 26% 0 0;
+  }
+
+  /* Theme-aware tinted shadows, used instead of flat black shadows */
+  .shadow-accent {
+    box-shadow: 0 24px 48px -22px color-mix(in srgb, var(--accent) 45%, transparent);
+  }
+
+  .shadow-accent-sm {
+    box-shadow: 0 12px 28px -14px color-mix(in srgb, var(--accent) 40%, transparent);
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee {
+      animation: none;
+    }
+  }
+}
+
+@layer base {
+  /* Fine film-grain texture over the whole page for tactile depth */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    background-image: radial-gradient(circle, color-mix(in srgb, var(--accent) 40%, var(--text) 60%) 1px, transparent 1px);
+    background-size: 3px 3px;
   }
 }
 
